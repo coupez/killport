@@ -1,6 +1,6 @@
 <p align="center">
 
-![killport](/logo.png "Killport")
+<img src="https://github.com/coupez/killport/blob/main/logo.png?raw=true" alt="killport" />
 
 </p>
 
