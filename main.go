@@ -12,16 +12,27 @@ func main() {
 		fmt.Printf("missing port\n")
 		return
 	}
+	
+	failed := []int{}
+	portStrings := os.Args[1:]
+	
+	for _, portStr := range portStrings {
+		port, err := strconv.ParseInt(portStr, 10, 64)
+		if err != nil {
+			failed = append(failed, port)
+			return
+		}
 
-	portStr := os.Args[1]
-	port, err := strconv.ParseInt(portStr, 10, 64)
-	if err != nil {
-		fmt.Printf("invalid port\n: %s", portStr)
-		return
+		if err := run(int(port), "tcp"); err != nil {
+			panic(err)
+		}
 	}
-
-	if err := run(int(port), "tcp"); err != nil {
-		panic(err)
+	
+	if len(failed) != 0 {
+		for _, failedPort := range failed {
+			fmt.Printf("invalid port\n: %d", failedPort)
+		}
+		os.Exit(1)
 	}
 }
 
