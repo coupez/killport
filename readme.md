@@ -21,3 +21,9 @@ Pass the desired port as argument to `killport`
 ```
 killport 8080
 ```
+
+Multiple port arguments are possible
+
+```
+killport 3000 443
+```
